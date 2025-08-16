@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 
+      Content-Security-Policy is a critical security feature.
+      This policy restricts where resources (like scripts, styles, fonts) can be loaded from,
+      helping to prevent Cross-Site Scripting (XSS) attacks.
+      'self' allows loading from the same origin (the app's own files).
+      It's important to keep this as restrictive as possible.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Recovery Tool</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>Secure Recovery Tool</h1>
+        <p class="legal-banner">Authorized use only — no cracking.</p>
+    </header>
+
+    <main class="container">
+        <!-- Navigation could go here to switch between sections if needed -->
+
+        <section id="request-intake" class="card">
+            <h2>1. Request Intake</h2>
+            <form id="intake-form">
+                <div class="form-group">
+                    <label for="case-id">Case ID:</label>
+                    <input type="text" id="case-id" name="case-id" placeholder="e.g., C-12345" required>
+                </div>
+                <div class="form-group">
+                    <label for="target-user">Target User:</label>
+                    <input type="text" id="target-user" name="target-user" placeholder="e.g., jdoe" required>
+                </div>
+                <div class="form-group">
+                    <label for="scan-paths">Folders to Scan:</label>
+                    <textarea id="scan-paths" name="scan-paths" rows="3" placeholder="Enter one absolute folder path per line..."></textarea>
+                </div>
+                <button type="submit">Start Scan</button>
+            </form>
+        </section>
+
+        <section id="scan-results" class="card">
+            <h2>2. Scan Results</h2>
+            <div id="results-container" class="placeholder">
+                <p>Scan results will appear here...</p>
+            </div>
+            <div id="scan-status"></div>
+        </section>
+
+        <section id="memory-jogger" class="card">
+            <h2>3. Memory Jogger</h2>
+            <p>Provide keywords or phrases that might be part of the password.</p>
+            <form id="jogger-form">
+                <div class="form-group">
+                    <label for="keywords">Keywords:</label>
+                    <input type="text" id="keywords" name="keywords" placeholder="e.g., pet's name, favorite team, birthday">
+                </div>
+                <button type="submit">Generate Candidates</button>
+            </form>
+        </section>
+
+        <section id="candidate-manager" class="card">
+            <h2>4. Candidate Manager</h2>
+            <div id="candidates-list" class="placeholder">
+                <p>Generated password candidates will be listed here.</p>
+            </div>
+        </section>
+
+        <section id="approvals" class="card">
+            <h2>5. Approvals</h2>
+            <div id="approval-status">Approval status will be shown here.</div>
+            <form id="approval-form">
+                <div class="form-group">
+                    <label for="approval-item-id">Item for Approval:</label>
+                    <input type="text" id="approval-item-id" name="approval-item-id" placeholder="Select an item from the vault" readonly>
+                </div>
+                 <div class="form-group">
+                    <label for="approval-justification">Justification:</label>
+                    <textarea id="approval-justification" name="approval-justification" rows="2" required></textarea>
+                </div>
+                <button type="button" id="request-approval-btn">Request Approval</button>
+            </form>
+        </section>
+
+        <section id="vault" class="card">
+            <h2>6. Vault</h2>
+            <div id="vault-items" class="placeholder">
+                <p>Discovered vault items will appear here after a successful scan.</p>
+                <!-- Example of a vault item -->
+                <!-- 
+                <div class="vault-item" data-item-id="key_123">
+                    <span>SecretKey.txt</span>
+                    <button class="request-access-btn">Request Access</button>
+                </div> 
+                -->
+            </div>
+        </section>
+
+        <section id="help" class="card">
+            <h2>Help & Information</h2>
+            <p>This tool is for authorized personnel to assist in data recovery scenarios. All actions are logged and audited. Follow your organization's standard operating procedures.</p>
+        </section>
+
+    </main>
+
+    <!-- 
+      The 'defer' attribute ensures the script is executed only after the
+      HTML document has been fully parsed. This prevents errors that
+      can occur if the script tries to access DOM elements that haven't
+      been created yet.
+    -->
+    <script src="./renderer.js"></script>
+</body>
+</html>

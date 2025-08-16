@@ -1,0 +1,17 @@
+{
+  "name": "authorized-password-recovery-assistant",
+  "version": "1.0.0",
+  "description": "A legal, authorized tool to help users recover forgotten file passwords.",
+  "main": "src/main.js",
+  "scripts": {
+  "start": "electron .",
+  "build": "electron-builder"
+}
+,
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.0.0"
+  }
+}
+
